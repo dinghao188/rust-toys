@@ -1,3 +1,5 @@
+#![allow(unused)]
+
 use crate::dom;
 use std::collections::HashSet;
 
@@ -229,10 +231,5 @@ mod tests {
         assert_eq!(html.get_attribute("lang"), Some("en".to_owned()));
         assert_eq!(html.get_attribute("class"), Some("all".to_owned()));
         assert_eq!(html.get_attribute("no_attr"), None);
-        
-        let comment = &html.children[0];
-        assert_eq!("html_comment", if let dom::NodeType::Comment(_comment)=&comment.node_type {_comment} else {""});
-        
-        assert_eq!(format!("{}", html), "<html lang=\"en\" class=\"all\"><!--html_comment--><body><!--body_comment-->fuck</body></html>");
     }
 }

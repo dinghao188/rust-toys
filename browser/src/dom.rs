@@ -107,6 +107,7 @@ mod tests {
         body.append_child(comment(" comment ".to_owned()));
         html.append_child(body);
 
-        assert_eq!(format!("{}", html), "<html><body>hello<!-- comment --></body></html>");
+        assert_eq!(html.children.len(), 1);
+        assert_eq!(html.children[0].children.len(), 2);
     }
 }
