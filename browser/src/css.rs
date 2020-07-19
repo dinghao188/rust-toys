@@ -1,17 +1,17 @@
 #![allow(unused)]
 
-struct StyleSheet {
-    rules: Vec<Rule>,
+pub struct StyleSheet {
+    pub rules: Vec<Rule>,
 }
 
-struct Rule {
-    selectors: Vec<Selector>,
-    declarations: Vec<Declaration>
+pub struct Rule {
+    pub selectors: Vec<Selector>,
+    pub declarations: Vec<Declaration>
 }
 
 pub type Specificity = (usize, usize, usize);
 #[derive(Debug)]
-enum Selector {
+pub enum Selector {
     Simple(SimpleSelector)
 }
 
@@ -26,19 +26,19 @@ impl Selector {
 }
 
 #[derive(Debug)]
-struct SimpleSelector {
-    tag_name: Option<String>,
-    id: Option<String>,
-    class: Vec<String>
+pub struct SimpleSelector {
+    pub tag_name: Option<String>,
+    pub id: Option<String>,
+    pub class: Vec<String>
 }
 
-struct Declaration {
-    name: String,
-    value: Value
+pub struct Declaration {
+    pub name: String,
+    pub  value: Value
 }
 
 #[derive(Debug, PartialEq)]
-enum Unit {
+pub enum Unit {
     Px,
 }
 
@@ -49,8 +49,8 @@ struct Color {
     b: u8,
     a: u8,
 }
-#[derive(Debug, PartialEq)]
-enum Value {
+#[derive(Debug, PartialEq, Clone)]
+pub enum Value {
     Keyword(String),
     Length(f32, Unit),
     ColorValue(Color)

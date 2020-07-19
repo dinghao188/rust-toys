@@ -71,6 +71,19 @@ pub struct ElementData {
     pub attributes: AttrMap
 }
 
+impl ElementData {
+    pub fn id(&self) -> Option<&String> {
+        self.attributes.get("id")
+    }
+
+    pub fn classes(&self) -> std::collections::HashSet<&str>{
+        match self.attributes.get("class") {
+            Some(classList) => {classList.split(' ').collect()},
+            None => std::collections::HashSet::new()
+        }
+    }
+}
+
 pub type AttrMap = std::collections::HashMap<String, String>;
 
 pub fn text(data: String) -> Node {
