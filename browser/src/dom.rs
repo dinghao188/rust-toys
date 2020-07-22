@@ -1,3 +1,4 @@
+#![allow(unused)]
 use std::fmt::Display;
 use std::fmt::Formatter;
 
@@ -78,7 +79,7 @@ impl ElementData {
 
     pub fn classes(&self) -> std::collections::HashSet<&str>{
         match self.attributes.get("class") {
-            Some(classList) => {classList.split(' ').collect()},
+            Some(class_list) => {class_list.split(' ').collect()},
             None => std::collections::HashSet::new()
         }
     }

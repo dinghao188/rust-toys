@@ -37,13 +37,13 @@ pub struct Declaration {
     pub  value: Value
 }
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Unit {
     Px,
 }
 
-#[derive(Debug, PartialEq)]
-struct Color {
+#[derive(Debug, PartialEq, Clone)]
+pub struct Color {
     r: u8,
     g: u8,
     b: u8,
@@ -97,6 +97,12 @@ impl Value {
             Some((s[0..s.len()-2].parse().unwrap_or(0.0), Unit::Px))
         } else {
             None
+        }
+    }
+    pub fn to_px(&self) -> f32 {
+        match self {
+            Value::Length(l, _) => *l,
+            _ => 0.0
         }
     }
 }

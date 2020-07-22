@@ -1,3 +1,4 @@
+#![allow(unused)]
 use crate::css;
 use crate::dom;
 use crate::layout::Display;
@@ -55,7 +56,7 @@ pub fn style_tree<'a>(root: &'a dom::Node, style_sheet: &'a css::StyleSheet) -> 
         node: root,
         specified_values: match &root.node_type {
             dom::NodeType::Element(elem) => specified_values(elem, style_sheet),
-            dom::NodeType::Text(_) => PropertyMap::new()
+            _ => PropertyMap::new(),
         },
         children: root.children.iter().map(|child_node| style_tree(child_node, style_sheet)).collect(),
     }
